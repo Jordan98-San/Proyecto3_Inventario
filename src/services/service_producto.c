@@ -27,7 +27,7 @@ void generarIdAleatorio(char *id) {
 
 int validarIdUnico(Inventario *inv, char *id) {
   for (int i = 0; i < inv->cantidad; i++) {
-    if (strcmp(inv->producto[i].id, id) == 0) {
+    if (strcmp(inv->producto[i].codigo, id) == 0) {
       return 1;
     }
   }
@@ -37,13 +37,13 @@ int validarIdUnico(Inventario *inv, char *id) {
 // Registra un producto con datos de entrada.
 Producto crearProduct(const char *nombre, float precio) {
   Producto p = {0};
-  generarIdAleatorio(p.id);
+  generarIdAleatorio(p.codigo);
   // Forma segura de copiar una cadena
-  strncpy(p.name, nombre, MAX_NAME - 1);
-  p.name[MAX_NAME - 1] = '\0'; // Asegura la terminacion
+  strncpy(p.nombre, nombre, MAX_NAME - 1);
+  p.nombre[MAX_NAME - 1] = '\0'; // Asegura la terminacion
 
-  p.precio = precio;
-  p.stock = 0;
+  p.precioVenta = precio;
+  p.cantidad = 0;
 
   return p;
 }
@@ -58,16 +58,21 @@ Producto leerEntradaUsuario(Inventario *inv) {
   Producto p = {0};
 
   do {
-    generarIdAleatorio(p.id);
-  } while (validarIdUnico(inv, p.id));
+    generarIdAleatorio(p.codigo);
+  } while (validarIdUnico(inv, p.codigo));
 
   printf("Introduce el nombre del producto: ");
-  if (fgets(p.name, MAX_NAME, stdin) !=
-      NULL) {                             // Verifica que se haya leido bien
-    p.name[strcspn(p.name, "\n")] = '\0'; // quita el salto de linea.
+  if (fgets(p.nombre, MAX_NAME, stdin) !=
+      NULL) {                                 // Verifica que se haya leido bien
+    p.nombre[strcspn(p.nombre, "\n")] = '\0'; // quita el salto de linea.
   }
-  printf("Introduce el precio del producto: ");
-  while (scanf("%f", &p.precio) != 1) {
+
+  printf("Ingresa la categoria del producto: ");
+  if (fgets(p.categoria, MAX_CATEGORIA, stdin) != NULL) {
+    p.categoria[strcspn(p.categoria, "\n")] = '\0';
+  }
+  printf("Introduce el precio de Compra del producto: ");
+  while (scanf("%f", &p.precioCompra) != 1) {
     printf("[!] Precio invalido intenta de nuevo: ");
     while (getchar() != '\n')
       ; // Descarta la entrada invalida
@@ -75,6 +80,26 @@ Producto leerEntradaUsuario(Inventario *inv) {
   while (getchar() != '\n')
     ; // limpia el buffer
 
-  p.stock = 0;
+  printf("Introduce el precio venta del producto: ");
+  while (scanf("%f", &p.precioVenta) != 1 || p.precioVenta <= p.precioCompra) {
+    printf("[!]Precio venta debe ser mayor al precio compra");
+    while (getchar() != '\n')
+      ;
+  }
+  while (getchar() != '\n')
+    ;
+
+  printf("Introduce la cantidad: ");
+  while (scanf("%d", &p.cantidad) != 1) {
+    printf("[!] Cantidad invalida: ");
+    while (getchar() != '\n')
+      ;
+  }
+  while (getchar() != '\n')
+    ;
+  p.utilidad = utilidadCalc(&p);
   return p;
+}
+float utilidadCalc(Producto *p) {
+  return (p->precioVenta - p->precioCompra) * p->cantidad;
 }

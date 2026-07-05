@@ -20,6 +20,8 @@ Producto crearProduct(const char *name, float precio);
  * para validad ID*/
 Producto leerEntradaUsuario(Inventario *inv);
 
+float utilidadCalc(Producto *p);
+
 Producto buscarProduct();
 
 Producto actualizarProduct();

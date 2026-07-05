@@ -16,8 +16,9 @@ void iniciarMenu(void) {
   int opcion = 0;
   do {
     printf("1. Registar Producto\n");
-    printf("2. Cargar Inventraio\n");
-    printf("3. Salir\n");
+    printf("2. Cargar Inventraio en MEMORIA\n");
+    printf("3. Guardar cambios\n");
+    printf("4. Salir y Guarda\n");
     printf("Selccione una opcion: ");
 
     scanf("%d", &opcion);
@@ -33,13 +34,20 @@ void iniciarMenu(void) {
     }
     case 2: {
       for (int i = 0; i < inv.cantidad; i++) {
-        printf("[%s] %s $%2.f (Stock: %u)\n", inv.producto[i].id,
-               inv.producto[i].name, inv.producto[i].precio,
-               inv.producto[i].stock);
+        printf("[%s] %s %s (P.Compra)$%.2f (P.Venta)$%.2f (Cantidad %u) "
+               "(Utilidad)%2.f\n",
+               inv.producto[i].codigo, inv.producto[i].nombre,
+               inv.producto[i].categoria, inv.producto[i].precioCompra,
+               inv.producto[i].precioVenta, inv.producto[i].cantidad,
+               inv.producto[i].utilidad);
       }
       break;
     }
     case 3: {
+      saveProductInText(&inv);
+      break;
+    }
+    case 4: {
       saveProductInText(&inv);
       printf("Hasta luego...");
       break;
@@ -50,5 +58,5 @@ void iniciarMenu(void) {
     }
     }
 
-  } while (opcion != 3);
+  } while (opcion != 4);
 }

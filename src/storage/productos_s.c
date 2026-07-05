@@ -6,8 +6,8 @@
 #include <stdlib.h>
 
 /*define statements*/
-#define FILENAME "Productos.txt"
-#define MAX 100
+#define FILENAME "Productos.csv"
+#define MAX 256
 
 // Guarda todo el inventario.
 int saveProductInText(const Inventario *inv) {
@@ -20,9 +20,9 @@ int saveProductInText(const Inventario *inv) {
 
   for (int i = 0; i < inv->cantidad; i++) {
     const Producto *pro = &inv->producto[i];
-    fprintf(file, "%s;%s;%.2f;%u\n", pro->id, pro->name, pro->precio,
-            pro->stock);
-    fprintf(file, "-----------------------------------\n");
+    fprintf(file, "%s;%s;%s ;%.2f;%.2f;%u;%.2f\n", pro->codigo, pro->nombre,
+            pro->categoria, pro->precioCompra, pro->precioVenta, pro->cantidad,
+            pro->utilidad);
   }
 
   fclose(file);
@@ -47,9 +47,10 @@ int readProductoFromText(Inventario *inv) {
          inv->cantidad < MAX_PRODUCTOS) {
     Producto p = {0};
 
-    int leido =
-        sscanf(linea, "%[^;];%[^;];%f;%u", p.id, p.name, &p.precio, &p.stock);
-    if (leido == 4) {
+    int leido = sscanf(linea, "%[^;];%[^;];%[^;];%f;%f;%u;%f", p.codigo,
+                       p.nombre, p.categoria, &p.precioCompra, &p.precioVenta,
+                       &p.cantidad, &p.utilidad);
+    if (leido == 7) {
       inv->producto[inv->cantidad] = p;
       inv->cantidad++;
     }

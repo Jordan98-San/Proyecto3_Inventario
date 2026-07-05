@@ -9,7 +9,7 @@ void inicializarInventario(Inventario *inv) { inv->cantidad = 0; }
 void agregarProducto(Inventario *inv, Producto producto) {
   if (inv->cantidad >= MAX_PRODUCTOS) {
     printf("[!] Inventario lleno, no se puedo agregar el producto ;%s'\n ",
-           producto.name);
+           producto.nombre);
     return;
   }
 
@@ -17,6 +17,6 @@ void agregarProducto(Inventario *inv, Producto producto) {
 
   inv->cantidad++;
 
-  printf("[+] Producto '%s' agregado (total: %d). \n", producto.name,
+  printf("[+] Producto '%s' agregado (total: %d). \n", producto.nombre,
          inv->cantidad);
 }
