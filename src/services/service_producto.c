@@ -34,7 +34,14 @@ int validarIdUnico(Inventario *inv, char *id) {
   return 0;
 }
 
-// Registra un producto con datos de entrada.
+Producto *buscarPorID(Inventario *inv, char *id) {
+  // Completar
+
+  return NULL; // Retorna NULL si es producto no exite
+}
+
+// Registra un producto con datos de entrada
+// Esta funncion podria borrarse no hace nada
 Producto crearProduct(const char *nombre, float precio) {
   Producto p = {0};
   generarIdAleatorio(p.codigo);
@@ -100,6 +107,8 @@ Producto leerEntradaUsuario(Inventario *inv) {
   p.utilidad = utilidadCalc(&p);
   return p;
 }
+
+// Funcion de para calcular la utilidad por producto no de todo el Inventario.
 float utilidadCalc(Producto *p) {
   return (p->precioVenta - p->precioCompra) * p->cantidad;
 }

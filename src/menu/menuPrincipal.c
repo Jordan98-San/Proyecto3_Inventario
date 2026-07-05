@@ -17,8 +17,9 @@ void iniciarMenu(void) {
   do {
     printf("1. Registar Producto\n");
     printf("2. Cargar Inventraio en MEMORIA\n");
-    printf("3. Guardar cambios\n");
-    printf("4. Salir y Guarda\n");
+    printf("3. Buscar por Codigo");
+    printf("4. Guardar cambios\n");
+    printf("5. Salir y Guarda\n");
     printf("Selccione una opcion: ");
 
     scanf("%d", &opcion);
@@ -44,10 +45,15 @@ void iniciarMenu(void) {
       break;
     }
     case 3: {
-      saveProductInText(&inv);
+      /*llamar a qui a la funcion buscarPorID*/
+
       break;
     }
     case 4: {
+      saveProductInText(&inv);
+      break;
+    }
+    case 5: {
       saveProductInText(&inv);
       printf("Hasta luego...");
       break;
@@ -58,5 +64,5 @@ void iniciarMenu(void) {
     }
     }
 
-  } while (opcion != 4);
+  } while (opcion != 5);
 }

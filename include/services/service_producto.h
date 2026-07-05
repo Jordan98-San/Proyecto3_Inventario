@@ -22,6 +22,13 @@ Producto leerEntradaUsuario(Inventario *inv);
 
 float utilidadCalc(Producto *p);
 
+/*
+ * Busca un producto por su ID/condigo
+ * @Param -> Recibe un producto del inventario
+ * @Param -> Un ID esto para comparar.
+ */
+Producto *buscarPorID(Inventario *inv, char *id);
+
 Producto buscarProduct();
 
 Producto actualizarProduct();
