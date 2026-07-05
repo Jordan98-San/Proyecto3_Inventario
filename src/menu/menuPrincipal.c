@@ -16,14 +16,14 @@ void iniciarMenu(void) {
   int opcion = 0;
 
   do {
-    printf("\n========== MENU ==========\n");
     printf("1. Registrar Producto\n");
-    printf("2. Listar Inventario \n");
-    printf("3. Buscar por Codigo\n");
-    printf("4. Actualizar\n");
-    printf("5. Eliminar\n");
-    printf("6. Guardar cambios\n");
-    printf("7. Salir y Guardar\n");
+    printf("2. Listar Inventario\n");
+    printf("3. Buscar Producto\n");
+    printf("4. Actualizar producto\n");
+    printf("5. Eliminar producto\n");
+    printf("6. Calcular utilidad\n");
+    printf("7. Guardar cambios\n");
+    printf("8. Salir y Guardar\n");
     printf("==========================\n");
     printf("Seleccione una opcion: ");
 
@@ -49,11 +49,14 @@ void iniciarMenu(void) {
           inv.producto[i].utilidad = utilidadCalc(&inv.producto[i]);
 
           printf("[%s] %s | %s | P.Compra: $%.2f | P.Venta: $%.2f | "
-                 "Cantidad: %u | Utilidad: $%.2f\n",
-                 inv.producto[i].codigo, inv.producto[i].nombre,
-                 inv.producto[i].categoria, inv.producto[i].precioCompra,
-                 inv.producto[i].precioVenta, inv.producto[i].cantidad,
-                 inv.producto[i].utilidad);
+                "Cantidad: %u | Utilidad: $%.2f\n",
+                inv.producto[i].codigo,
+                inv.producto[i].nombre,
+                inv.producto[i].categoria,
+                inv.producto[i].precioCompra,
+                inv.producto[i].precioVenta,
+                inv.producto[i].cantidad,
+                inv.producto[i].utilidad);
         }
       }
 
@@ -137,12 +140,22 @@ void iniciarMenu(void) {
     }
 
     case 6: {
+      float total = utilidadTotalInventario(&inv);
+
+      printf("\n====================================\n");
+      printf("Utilidad total del inventario: $%.2f\n", total);
+      printf("====================================\n");
+
+      break;
+    }
+
+    case 7: {
       saveProductInText(&inv);
       printf("\n[+] Cambios guardados correctamente.\n");
       break;
     }
 
-    case 7: {
+    case 8: {
       saveProductInText(&inv);
       printf("\nHasta luego...\n");
       break;

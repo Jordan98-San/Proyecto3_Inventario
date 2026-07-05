@@ -24,6 +24,8 @@ Producto leerEntradaUsuario(Inventario *inv);
 
 float utilidadCalc(Producto *p);
 
+float utilidadTotalInventario(Inventario *inv);
+
 /*
  * Busca un producto por su ID/codigo
  * @Param -> Recibe un producto del inventario

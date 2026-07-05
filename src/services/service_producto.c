@@ -347,6 +347,22 @@ int eliminarProducto(Inventario *inv, char *id) {
 }
 
 // Funcion para calcular la utilidad por producto, no de todo el inventario.
+float utilidadTotalInventario(Inventario *inv) {
+  float total = 0;
+
+  if (inv == NULL) {
+    return 0;
+  }
+
+  for (int i = 0; i < inv->cantidad; i++) {
+    inv->producto[i].utilidad = utilidadCalc(&inv->producto[i]);
+    total += inv->producto[i].utilidad;
+  }
+
+  return total;
+}
+
+// Funcion para calcular la utilidad por producto, no de todo el inventario.
 float utilidadCalc(Producto *p) {
   if (p == NULL) {
     return 0;
