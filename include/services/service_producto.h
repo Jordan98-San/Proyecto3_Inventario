@@ -40,7 +40,7 @@ void mostrarProductoPorID(Inventario *inv, char *id);
 
 void actualizarProduct(Producto *p);
 
-Producto eliminarProducto();
+int eliminarProducto(Inventario *inv, char *id);
 
 void listarProductos(Inventario *inv);
 

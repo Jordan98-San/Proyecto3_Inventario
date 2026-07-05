@@ -75,11 +75,63 @@ void iniciarMenu(void) {
     }
 
     case 4: {
+      char codigo[LONGITUD_ID + 1];
+      Producto *productoEncontrado;
+
+      printf("\nIngrese el codigo del producto a actualizar: ");
+      scanf("%8s", codigo);
+
+      while (getchar() != '\n')
+        ;
+
+      productoEncontrado = buscarPorID(&inv, codigo);
+
+      if (productoEncontrado == NULL) {
+        printf("\n[!] No existe un producto con ese codigo.\n");
+      } else {
+        actualizarProduct(productoEncontrado);
+      }
 
       break;
     }
 
     case 5: {
+      char codigo[LONGITUD_ID + 1];
+      char confirmacion;
+      Producto *productoEncontrado;
+
+      printf("\nIngrese el codigo del producto a eliminar: ");
+      scanf("%8s", codigo);
+
+      while (getchar() != '\n')
+        ;
+
+      productoEncontrado = buscarPorID(&inv, codigo);
+
+      if (productoEncontrado == NULL) {
+        printf("\n[!] No existe un producto con ese codigo.\n");
+      } else {
+        printf("\nProducto encontrado:\n");
+        printf("Codigo: %s\n", productoEncontrado->codigo);
+        printf("Nombre: %s\n", productoEncontrado->nombre);
+        printf("Categoria: %s\n", productoEncontrado->categoria);
+
+        printf("\nSeguro que deseas eliminar este producto? (s/n): ");
+        scanf("%c", &confirmacion);
+
+        while (getchar() != '\n')
+          ;
+
+        if (confirmacion == 's' || confirmacion == 'S') {
+          if (eliminarProducto(&inv, codigo)) {
+            printf("\n[+] Producto eliminado correctamente.\n");
+          } else {
+            printf("\n[!] No se pudo eliminar el producto.\n");
+          }
+        } else {
+          printf("\n[i] Eliminacion cancelada.\n");
+        }
+      }
 
       break;
     }
