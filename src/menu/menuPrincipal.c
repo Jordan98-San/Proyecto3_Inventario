@@ -7,7 +7,7 @@
 #include <stdio.h>
 
 void iniciarMenu(void) {
-  printf("==== Gensokyo SoftInv =====\n");
+  printf("==== Inventario Softnv =====\n");
 
   Inventario inv;
   inicializarInventario(&inv);
@@ -18,10 +18,12 @@ void iniciarMenu(void) {
   do {
     printf("\n========== MENU ==========\n");
     printf("1. Registrar Producto\n");
-    printf("2. Listar Inventario en Memoria\n");
+    printf("2. Listar Inventario \n");
     printf("3. Buscar por Codigo\n");
-    printf("4. Guardar cambios\n");
-    printf("5. Salir y Guardar\n");
+    printf("4. Actualizar\n");
+    printf("5. Eliminar\n");
+    printf("6. Guardar cambios\n");
+    printf("7. Salir y Guardar\n");
     printf("==========================\n");
     printf("Seleccione una opcion: ");
 
@@ -48,12 +50,9 @@ void iniciarMenu(void) {
 
           printf("[%s] %s | %s | P.Compra: $%.2f | P.Venta: $%.2f | "
                  "Cantidad: %u | Utilidad: $%.2f\n",
-                 inv.producto[i].codigo,
-                 inv.producto[i].nombre,
-                 inv.producto[i].categoria,
-                 inv.producto[i].precioCompra,
-                 inv.producto[i].precioVenta,
-                 inv.producto[i].cantidad,
+                 inv.producto[i].codigo, inv.producto[i].nombre,
+                 inv.producto[i].categoria, inv.producto[i].precioCompra,
+                 inv.producto[i].precioVenta, inv.producto[i].cantidad,
                  inv.producto[i].utilidad);
         }
       }
@@ -76,12 +75,22 @@ void iniciarMenu(void) {
     }
 
     case 4: {
+
+      break;
+    }
+
+    case 5: {
+
+      break;
+    }
+
+    case 6: {
       saveProductInText(&inv);
       printf("\n[+] Cambios guardados correctamente.\n");
       break;
     }
 
-    case 5: {
+    case 7: {
       saveProductInText(&inv);
       printf("\nHasta luego...\n");
       break;
@@ -93,5 +102,5 @@ void iniciarMenu(void) {
     }
     }
 
-  } while (opcion != 5);
+  } while (opcion != 7);
 }

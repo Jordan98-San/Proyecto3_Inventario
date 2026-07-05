@@ -38,9 +38,7 @@ Producto *buscarPorID(Inventario *inv, char *id);
  */
 void mostrarProductoPorID(Inventario *inv, char *id);
 
-Producto buscarProduct();
-
-Producto actualizarProduct();
+void actualizarProduct(Producto *p);
 
 Producto eliminarProducto();
 

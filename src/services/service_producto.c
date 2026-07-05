@@ -129,7 +129,8 @@ Producto leerEntradaUsuario(Inventario *inv) {
 
   printf("Introduce el precio de venta del producto: ");
   while (scanf("%f", &p.precioVenta) != 1 || p.precioVenta <= p.precioCompra) {
-    printf("[!] Precio de venta debe ser mayor al precio de compra. Intenta de nuevo: ");
+    printf("[!] Precio de venta debe ser mayor al precio de compra. Intenta de "
+           "nuevo: ");
 
     while (getchar() != '\n')
       ;
@@ -153,6 +154,8 @@ Producto leerEntradaUsuario(Inventario *inv) {
 
   return p;
 }
+
+void actualizarProduct(Producto *p) { /*Completar*/ }
 
 // Funcion para calcular la utilidad por producto, no de todo el inventario.
 float utilidadCalc(Producto *p) {
