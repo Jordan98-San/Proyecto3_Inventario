@@ -49,14 +49,11 @@ void iniciarMenu(void) {
           inv.producto[i].utilidad = utilidadCalc(&inv.producto[i]);
 
           printf("[%s] %s | %s | P.Compra: $%.2f | P.Venta: $%.2f | "
-                "Cantidad: %u | Utilidad: $%.2f\n",
-                inv.producto[i].codigo,
-                inv.producto[i].nombre,
-                inv.producto[i].categoria,
-                inv.producto[i].precioCompra,
-                inv.producto[i].precioVenta,
-                inv.producto[i].cantidad,
-                inv.producto[i].utilidad);
+                 "Cantidad: %u | Utilidad: $%.2f\n",
+                 inv.producto[i].codigo, inv.producto[i].nombre,
+                 inv.producto[i].categoria, inv.producto[i].precioCompra,
+                 inv.producto[i].precioVenta, inv.producto[i].cantidad,
+                 inv.producto[i].utilidad);
         }
       }
 
@@ -167,5 +164,5 @@ void iniciarMenu(void) {
     }
     }
 
-  } while (opcion != 7);
+  } while (opcion != 8);
 }
